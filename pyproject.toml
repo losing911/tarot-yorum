@@ -11,6 +11,9 @@ requires-python = ">=3.9"
 authors = [{ name = "tarot-yorum.fun" }]
 dependencies = []
 
+[project.scripts]
+tarot-yorum = "tarot_yorum.cli:main"
+
 [project.optional-dependencies]
 dev = ["pytest>=7.0"]
 
