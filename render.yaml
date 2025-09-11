@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: tarot-yorum
+    env: docker
+    plan: starter
+    region: frankfurt
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
+    healthCheckPath: /
+    envVars:
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: DATA_DIR
+        value: /data
+    disk:
+      name: data
+      mountPath: /data
+      sizeGB: 1
+    routes:
+      - type: rewrite
+        source: /static/*
+        destination: /static/$1

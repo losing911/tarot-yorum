@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Yönetim - Tarot Admin{% endblock %}
+{% block content %}
+<form method="get" action="/admin" class="mb-6 flex gap-2 items-end">
+  <div>
+    <label class="block mb-1 font-medium">Tarih</label>
+    <input type="date" name="date" value="{{ date }}" class="border rounded p-2" />
+  </div>
+  <button class="btn-brand px-4 py-2 rounded">Görüntüle</button>
+  {% if request.query_params.get('saved') %}
+    <span class="ml-2 text-green-700">Kaydedildi.</span>
+  {% endif %}
+</form>
+
+{% if request.query_params.get('saved') %}
+  <div class="mb-4 rounded border border-green-200 bg-green-50 text-green-800 p-3">
+    Mesaj başarıyla güncellendi.
+  </div>
+{% endif %}
+{% if request.query_params.get('error') %}
+  <div class="mb-4 rounded border border-red-200 bg-red-50 text-red-700 p-3">
+    Geçersiz tarih veya istek. Lütfen tekrar deneyin.
+  </div>
+{% endif %}
+
+<div class="bg-white p-4 rounded shadow mb-4">
+  <h2 class="font-semibold">Bugünün Kartları</h2>
+  <ul class="list-disc ml-4">
+    {% for c in cards %}
+      <li>{{ c }}</li>
+    {% endfor %}
+  </ul>
+</div>
+
+<form method="post" action="/admin/update" class="bg-white p-4 rounded shadow">
+  <input type="hidden" name="date" value="{{ date }}" />
+  <label class="block mb-2 font-medium">Mesaj</label>
+  <textarea name="message" rows="5" class="border rounded w-full p-2">{{ message }}</textarea>
+  <div class="mt-3">
+    <button class="btn-brand px-4 py-2 rounded">Kaydet</button>
+  </div>
+  <p class="text-sm text-gray-500 mt-2">Varsayılan mesajı değiştirerek özelleştirebilirsiniz.</p>
+</form>
+{% endblock %}

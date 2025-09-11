@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Giriş - Tarot Admin{% endblock %}
+{% block content %}
+<form method="post" action="/admin/login" class="bg-white p-6 rounded shadow">
+  <label class="block mb-2 font-medium">Parola</label>
+  <input name="password" type="password" class="border rounded w-full p-2 mb-4" placeholder="Parola" />
+  <button class="btn-brand px-4 py-2 rounded">Giriş Yap</button>
+  {% if request.query_params.get('error') %}
+    <div class="mt-4 rounded border border-red-200 bg-red-50 text-red-700 p-3">
+      Hatalı parola. Lütfen tekrar deneyin.
+    </div>
+  {% endif %}
+</form>
+{% endblock %}
