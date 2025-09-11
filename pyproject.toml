@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tarot-yorum-fun"
+version = "0.1.0"
+description = "Günlük tarot yorumu için basit CLI ve kütüphane"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{ name = "tarot-yorum.fun" }]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,12 @@
+README.md
+pyproject.toml
+src/tarot_yorum/__init__.py
+src/tarot_yorum/cli.py
+src/tarot_yorum/service.py
+src/tarot_yorum_fun.egg-info/PKG-INFO
+src/tarot_yorum_fun.egg-info/SOURCES.txt
+src/tarot_yorum_fun.egg-info/dependency_links.txt
+src/tarot_yorum_fun.egg-info/requires.txt
+src/tarot_yorum_fun.egg-info/top_level.txt
+tests/test_cli.py
+tests/test_service.py

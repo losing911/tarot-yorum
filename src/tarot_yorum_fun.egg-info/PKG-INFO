@@ -1,0 +1,24 @@
+Metadata-Version: 2.4
+Name: tarot-yorum-fun
+Version: 0.1.0
+Summary: Günlük tarot yorumu için basit CLI ve kütüphane
+Author: tarot-yorum.fun
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0; extra == "dev"
+
+# tarot-yorum.fun
+
+Basit bir Python kütüphanesi ve CLI ile günlük tarot yorumu üretimi.
+
+## Hızlı Başlangıç
+- Geliştirme bağımlılıkları: pytest
+- Çalıştırma: CLI ile rastgele yerine deterministik bir günlük mesaj üretir (tohum olarak tarih kullanılır).
+
+## Geliştirme
+- Testleri çalıştır: `pytest`
+- CLI: `python -m tarot_yorum.cli --date 2025-09-11`
+
+## Lisans
+MIT
