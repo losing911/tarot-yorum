@@ -9,7 +9,10 @@ description = "Günlük tarot yorumu için basit CLI ve kütüphane"
 readme = "README.md"
 requires-python = ">=3.9"
 authors = [{ name = "tarot-yorum.fun" }]
-dependencies = []
+dependencies = [
+	"fastapi>=0.110",
+	"uvicorn>=0.23",
+]
 
 [project.scripts]
 tarot-yorum = "tarot_yorum.cli:main"
