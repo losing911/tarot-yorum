@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: astrrolog_postgres_dev
+    environment:
+      POSTGRES_DB: astrrolog_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_dev_data:/var/lib/postgresql/data
+      - ./migrations:/docker-entrypoint-initdb.d
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: astrrolog_redis_dev
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_dev_data:/data
+
+  # Development Backend (with hot reload)
+  backend-dev:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    container_name: astrrolog_backend_dev
+    environment:
+      - NODE_ENV=development
+      - PORT=3001
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/astrrolog_db
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=dev-secret-key
+      - AI_PROVIDER=openai
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-your-openai-key}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-your-gemini-key}
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./backend/src:/app/src
+      - ./backend/package.json:/app/package.json
+    depends_on:
+      - postgres
+      - redis
+    command: npm run dev
+
+  # Development Frontend (with hot reload)
+  frontend-dev:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: astrrolog_frontend_dev
+    environment:
+      - NODE_ENV=development
+      - NEXT_PUBLIC_API_URL=http://localhost:3001/api
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+      - ./frontend/package.json:/app/package.json
+      - ./frontend/next.config.js:/app/next.config.js
+      - ./frontend/tailwind.config.ts:/app/tailwind.config.ts
+    depends_on:
+      - backend-dev
+    command: npm run dev
+
+volumes:
+  postgres_dev_data:
+  redis_dev_data:
