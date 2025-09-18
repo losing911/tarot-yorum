@@ -2,6 +2,7 @@
 
 # Tarot Yorum - Ubuntu 25 Server Setup Script
 # Domain: tarot-yorum.fun
+# Repository: https://github.com/losing911/tarot-yorum
 # Author: AI Assistant
 # Date: September 18, 2025
 
