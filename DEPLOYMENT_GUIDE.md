@@ -127,7 +127,7 @@ redis-cli ping
 ### Git ile Klonlama
 ```bash
 cd /var/www/
-git clone https://github.com/YOUR_USERNAME/tarot-yorum.git tarot-yorum.fun
+git clone https://github.com/losing911/tarot-yorum.git tarot-yorum.fun
 chown -R www-data:www-data /var/www/tarot-yorum.fun
 ```
 

@@ -40,7 +40,7 @@
 
 ```bash
 # Repository'yi klonlayın
-git clone https://github.com/YOUR_USERNAME/tarot-yorum.git
+git clone https://github.com/losing911/tarot-yorum.git
 cd tarot-yorum
 
 # Backend kurulumu
@@ -72,7 +72,7 @@ docker-compose logs -f
 
 ```bash
 # Otomatik kurulum scripti
-wget https://raw.githubusercontent.com/YOUR_USERNAME/tarot-yorum/main/ubuntu25-setup.sh
+wget https://raw.githubusercontent.com/losing911/tarot-yorum/main/ubuntu25-setup.sh
 chmod +x ubuntu25-setup.sh
 sudo ./ubuntu25-setup.sh
 ```
@@ -189,7 +189,7 @@ Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için [LICENSE](LICE
 ## 🆘 Destek
 
 - 📧 **Email**: support@tarot-yorum.fun
-- 🐛 **Bug Reports**: [GitHub Issues](https://github.com/YOUR_USERNAME/tarot-yorum/issues)
+- 🐛 **Bug Reports**: [GitHub Issues](https://github.com/losing911/tarot-yorum/issues)
 - 💬 **Discord**: [Tarot Yorum Community](https://discord.gg/tarot-yorum)
 
 ---

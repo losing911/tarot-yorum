@@ -9,6 +9,7 @@ set -e  # Exit on any error
 
 echo "🚀 Starting Tarot Yorum server setup for Ubuntu 25..."
 echo "Domain: tarot-yorum.fun"
+echo "Repository: https://github.com/losing911/tarot-yorum"
 echo "Server will be configured with Node.js, PostgreSQL, Redis, Nginx, and SSL"
 
 # Update system
