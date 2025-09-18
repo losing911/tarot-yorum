@@ -19,7 +19,7 @@ apt update && apt upgrade -y
 
 # Install essential packages
 echo "📦 Installing essential packages..."
-apt install -y curl wget gnupg2 software-properties-common apt-transport-https ca-certificates
+apt install -y curl wget gnupg2 software-properties-common apt-transport-https ca-certificates lsb-release
 
 # Install Node.js 20 LTS
 echo "📦 Installing Node.js 20 LTS..."
@@ -28,8 +28,14 @@ apt install -y nodejs
 
 # Install PostgreSQL 16
 echo "📦 Installing PostgreSQL 16..."
-sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
-wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+# Create the keyring directory if it doesn't exist
+mkdir -p /usr/share/keyrings
+
+# Add PostgreSQL official APT repository with modern GPG key handling
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor -o /usr/share/keyrings/postgresql-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/postgresql-keyring.gpg] http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list
+
+# Update package list and install PostgreSQL
 apt update
 apt install -y postgresql-16 postgresql-contrib-16
 
