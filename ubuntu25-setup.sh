@@ -15,41 +15,41 @@ echo "Server will be configured with Node.js, PostgreSQL, Redis, Nginx, and SSL"
 
 # Update system
 echo "📦 Updating system packages..."
-apt update && apt upgrade -y
+DEBIAN_FRONTEND=noninteractive apt update && DEBIAN_FRONTEND=noninteractive apt upgrade -y
 
 # Install essential packages
 echo "📦 Installing essential packages..."
-apt install -y curl wget gnupg2 software-properties-common apt-transport-https ca-certificates lsb-release
+DEBIAN_FRONTEND=noninteractive apt install -y curl wget gnupg2 software-properties-common apt-transport-https ca-certificates lsb-release
 
 # Install Node.js 20 LTS
 echo "📦 Installing Node.js 20 LTS..."
 curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
-apt install -y nodejs
+DEBIAN_FRONTEND=noninteractive apt install -y nodejs
 
 # Install PostgreSQL 16
 echo "📦 Installing PostgreSQL 16..."
 # Create the keyring directory if it doesn't exist
 mkdir -p /usr/share/keyrings
 
-# Add PostgreSQL official APT repository with modern GPG key handling
-wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor -o /usr/share/keyrings/postgresql-keyring.gpg
+# Add PostgreSQL official APT repository with modern GPG key handling (non-interactive)
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor --batch --yes -o /usr/share/keyrings/postgresql-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/postgresql-keyring.gpg] http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list
 
 # Update package list and install PostgreSQL
 apt update
-apt install -y postgresql-16 postgresql-contrib-16
+DEBIAN_FRONTEND=noninteractive apt install -y postgresql-16 postgresql-contrib-16
 
 # Install Redis
 echo "📦 Installing Redis..."
-apt install -y redis-server
+DEBIAN_FRONTEND=noninteractive apt install -y redis-server
 
 # Install Nginx
 echo "📦 Installing Nginx..."
-apt install -y nginx
+DEBIAN_FRONTEND=noninteractive apt install -y nginx
 
 # Install Certbot for SSL
 echo "📦 Installing Certbot for SSL certificates..."
-apt install -y certbot python3-certbot-nginx
+DEBIAN_FRONTEND=noninteractive apt install -y certbot python3-certbot-nginx
 
 # Install PM2 for process management
 echo "📦 Installing PM2..."
@@ -57,7 +57,7 @@ npm install -g pm2
 
 # Install build tools
 echo "📦 Installing build tools..."
-apt install -y build-essential git
+DEBIAN_FRONTEND=noninteractive apt install -y build-essential git
 
 # Configure PostgreSQL
 echo "🗄️ Configuring PostgreSQL..."
